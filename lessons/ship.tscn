@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmv50krf4bo5r"]
+[gd_scene load_steps=7 format=3 uid="uid://dmv50krf4bo5r"]
 
 [ext_resource type="Texture2D" uid="uid://bniyrxn3r2v8h" path="res://assets/ship.png" id="3_pdppw"]
 [ext_resource type="Script" uid="uid://bwkr2t4ku15qq" path="res://lessons/ship.gd" id="4_p1sls"]
@@ -8,7 +8,14 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_5xifn"]
 radius = 46.043457
 
-[node name="Sprite2D" type="Area2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xifn"]
+bg_color = Color(0.15686275, 0.8352941, 0.15686275, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Ship" type="Area2D"]
 script = ExtResource("4_p1sls")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -28,3 +35,22 @@ rotation = 1.36715
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5xifn")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -60.0
+offset_top = -70.0
+offset_right = 60.0
+offset_bottom = -58.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_5xifn")
+value = 80.0
+rounded = true
+allow_greater = true
+show_percentage = false

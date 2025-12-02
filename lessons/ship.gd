@@ -5,7 +5,7 @@ var max_speed := 1200.0
 var velocity := Vector2(0, 0)
 var steering_factor := 3.0
 var health := 10 #Starting Health Value
-
+var gem_count := 0 #Starting Gem Value
 
 
 func set_health(new_health: int) -> void:
@@ -35,6 +35,13 @@ func _ready() -> void:
 	set_health(health)
 	#connecting the ship to the healthpacks so they can be picked up
 
+func set_gem_count(new_gem_count: int) -> void:
+	gem_count = new_gem_count
+	get_node("UI/GemCount").text = "x" + str(gem_count)
+
+
 func _on_area_entered(area_that_entered: Area2D) -> void:
-	set_health(health + 10)
-	#The health value + the healthpack value
+	if area_that_entered.is_in_group("gem"):
+		set_gem_count(gem_count + 1)
+	elif area_that_entered.is_in_group("healing_item"):
+		set_health(health + 10)

@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://dy5y3hr4yh2ky"]
 
-[ext_resource type="Script" uid="uid://d3yvki67r340a" path="res://health_pack.gd" id="1_bboee"]
+[ext_resource type="Script" uid="uid://d3yvki67r340a" path="res://item.gd" id="1_bboee"]
 [ext_resource type="Texture2D" uid="uid://dknpi2mq4dhpa" path="res://assets/health_icon.svg" id="2_v2cuk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_irjl4"]
 radius = 26.019224
 
-[node name="HealthPack" type="Area2D"]
+[node name="HealthPack" type="Area2D" groups=["healing_item"]]
 audio_bus_override = true
 script = ExtResource("1_bboee")
 

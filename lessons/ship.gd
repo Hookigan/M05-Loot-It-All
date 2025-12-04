@@ -38,10 +38,12 @@ func _ready() -> void:
 func set_gem_count(new_gem_count: int) -> void:
 	gem_count = new_gem_count
 	get_node("UI/GemCount").text = "x" + str(gem_count)
-
+# Changes the GemCount label to a string variable so the value can change
 
 func _on_area_entered(area_that_entered: Area2D) -> void:
 	if area_that_entered.is_in_group("gem"):
 		set_gem_count(gem_count + 1)
+		#Pickup gem values
 	elif area_that_entered.is_in_group("healing_item"):
 		set_health(health + 10)
+		#pickup healthpack values

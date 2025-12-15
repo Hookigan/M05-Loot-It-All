@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var thruster_sound_player: AudioStreamPlayer = $ThrusterSoundPlayer
+@onready var powerup_sound_player: AudioStreamPlayer = $PowerupSoundPlayer
 
 
 var max_speed := 1200.0
@@ -50,7 +51,9 @@ func _ready() -> void:
 func set_gem_count(new_gem_count: int) -> void:
 	gem_count = new_gem_count
 	get_node("UI/GemCount").text = "x" + str(gem_count)
-# Changes the GemCount label to a string variable so the value can change
+	if gem_count > 0 and gem_count % 10 == 0:
+		powerup_sound_player.stream = preload("res://assets/audio/Health_Level_Up.wav")
+		powerup_sound_player.play()
 
 func _on_area_entered(area_that_entered: Area2D) -> void:
 	if area_that_entered.is_in_group("gem"):

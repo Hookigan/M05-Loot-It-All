@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmv50krf4bo5r"]
+[gd_scene load_steps=11 format=3 uid="uid://dmv50krf4bo5r"]
 
 [ext_resource type="Texture2D" uid="uid://bniyrxn3r2v8h" path="res://assets/ship.png" id="3_pdppw"]
 [ext_resource type="Script" uid="uid://bwkr2t4ku15qq" path="res://lessons/ship.gd" id="4_p1sls"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dgf54k70yiiff" path="res://assets/ship_visual_effects/main_thruster/main_thruster.tscn" id="5_q7c3l"]
 [ext_resource type="PackedScene" uid="uid://bklom8bhpxg4h" path="res://assets/ship_visual_effects/side_thruster/side_thruster.tscn" id="6_1updt"]
 [ext_resource type="AudioStream" uid="uid://wut8wvthpvgq" path="res://assets/audio/Thruster.wav" id="6_2s445"]
+[ext_resource type="AudioStream" uid="uid://bj4at13xo56jb" path="res://assets/audio/Health_Level_Up.wav" id="7_dwuaj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5xifn"]
 radius = 46.043457
@@ -83,3 +84,7 @@ justification_flags = 131
 [node name="ThrusterSoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_2s445")
 volume_db = -18.341
+
+[node name="PowerupSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_dwuaj")
+volume_db = -10.0

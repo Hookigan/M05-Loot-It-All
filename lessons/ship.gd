@@ -1,5 +1,8 @@
 extends Area2D
 
+@onready var thruster_sound_player: AudioStreamPlayer = $ThrusterSoundPlayer
+@onready var powerup_sound_player: AudioStreamPlayer = $PowerupSoundPlayer
+
 
 var max_speed := 1200.0
 var velocity := Vector2(0, 0)
@@ -17,6 +20,13 @@ func _process(delta: float) -> void:
 	var direction := Vector2(0, 0)
 	direction.x = Input.get_axis("move_left", "move_right")
 	direction.y = Input.get_axis("move_up", "move_down")
+	
+	var is_moving := direction.length() > 0.0
+	if is_moving and not thruster_sound_player.playing:
+		thruster_sound_player.play()
+	elif not is_moving and thruster_sound_player.playing:
+		thruster_sound_player.stop()
+		
 	var viewport_size := get_viewport_rect().size
 	position.x = wrapf(position.x, 0, viewport_size.x)
 	position.y = wrapf(position.y, 0, viewport_size.y)
@@ -41,7 +51,9 @@ func _ready() -> void:
 func set_gem_count(new_gem_count: int) -> void:
 	gem_count = new_gem_count
 	get_node("UI/GemCount").text = "x" + str(gem_count)
-# Changes the GemCount label to a string variable so the value can change
+	if gem_count > 0 and gem_count % 10 == 0:
+		powerup_sound_player.stream = preload("res://assets/audio/Health_Level_Up.wav")
+		powerup_sound_player.play()
 
 func _on_area_entered(area_that_entered: Area2D) -> void:
 	if area_that_entered.is_in_group("gem"):
